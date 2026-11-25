@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.11 - 2026-11-25
+
+- chore: add metadata-only raw socket diagnostics for inbound WhatsApp message and status stanzas.
+- fix: observe status-like traffic before callback dispatch so the actual stanza shape can be identified.
+
 ## 0.5.9 - 2026-11-25
 
 - feat: add `sendGroupStatus()` to publish text and media statuses directly to group chats.
