@@ -35,7 +35,7 @@
 >
 > **Forking is completely acceptable. Removing attribution, contributor credits, or modification history is not.**
 >
-> **Read [NOTICE.md](https://github.com/flexisystems2000/baileys/blob/main/NOTICE.md) for important attribution requirements and future maintenance plans.**
+> **Read [NOTICE.md](https://github.com/flexisystems2000/Flexi-Baileys/blob/main/NOTICE.md) for important attribution requirements and future maintenance plans.**
 >
 > Thank you. 🤍
 
@@ -179,7 +179,7 @@ Choose one of the following methods to install `@flexisystems/baileys`.
 
 # GitHub
 "dependencies": {
-   "@flexisystems/baileys": "github:flexisystems2000/baileys"
+   "@flexisystems/baileys": "github:flexisystems2000/Flexi-Baileys"
 }
 ```
 
@@ -190,7 +190,7 @@ Choose one of the following methods to install `@flexisystems/baileys`.
 npm i @flexisystems/baileys@latest
 
 # GitHub
-npm i github:flexisystems2000/baileys
+npm i github:flexisystems2000/Flexi-Baileys
 ```
 
 - 🔗 Peer Dependencies
