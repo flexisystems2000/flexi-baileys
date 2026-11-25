@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.9 - 2026-11-25
+
+- feat: add `sendGroupStatus()` to publish text and media statuses directly to group chats.
+- fix: include the `origin=group_status` metadata attribute when relaying group status posts.
+
+
 ## 0.5.6 - 2026-11-14
 
 - fix: don't build downloads on the `a.whatsapp.net` placeholder host.
