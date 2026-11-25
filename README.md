@@ -3,7 +3,7 @@
 [![Logo](https://files.catbox.moe/c5s9g0.jpg)](https://www.npmjs.com/package/@flexisystems/baileys)
 
 <p align="center">
-   A lightweight, dependency-minimal Baileys v7 fork with newsletter media upload fixes, interactive messages, albums, and extended message type support.
+   A Flexi Systems-maintained Baileys v7 distribution with extended WhatsApp messaging support, group-status handling, Meta AI-style rich responses, and an integrated VoIP calling engine.
    <br><br>
    <a href="https://www.npmjs.com/package/@flexisystems/baileys">
       <img src="https://img.shields.io/npm/v/@flexisystems/baileys?style=for-the-badge&logo=npm"/>
@@ -11,8 +11,8 @@
    <a href="https://www.npmjs.com/package/@flexisystems/baileys">
       <img src="https://img.shields.io/npm/dm/@flexisystems/baileys?style=for-the-badge&logo=npm"/>
    </a>
-   <a href="https://github.com/flexisystems2000/baileys">
-      <img src="https://img.shields.io/github/stars/itsliaaa/baileys?style=for-the-badge&logo=github"/>
+   <a href="https://github.com/flexisystems2000/Flexi-Baileys">
+      <img src="https://img.shields.io/github/stars/flexisystems2000/Flexi-Baileys?style=for-the-badge&logo=github"/>
    </a>
    <a href="LICENSE">
       <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge"/>
@@ -102,6 +102,7 @@
    - [👁️ View Once](#%EF%B8%8F-view-once)
    - [👁️ View Once V2](#%EF%B8%8F-view-once-v2)
    - [👁️ View Once V2 Extension](#%EF%B8%8F-view-once-v2-extension)
+- [☎️ VoIP Calling](#-voip-calling)
 - [♻️ Modify Messages](#%EF%B8%8F-modify-messages)
    - [🗑️ Delete Messages](#%EF%B8%8F-delete-messages)
    - [✏️ Edit Messages](#%EF%B8%8F-edit-messages)
@@ -137,6 +138,10 @@ This fork designed for production use with a focus on clarity and safety:
 - 🌱 Reduced transitive dependencies from 13 to just 2 with optional peer integrations.
 
 ### 📨 Messages Handling & Compatibility
+
+- 🎞️ Added group-status message handling support for receiving, decoding, and processing supported group status updates.
+- ✨ Added Meta AI-style rich-response utilities for composing supported rich WhatsApp messages.
+- ☎️ Includes the vendored Hiroosy VoIP engine, exposed through the named `Voip` export. See [VoIP Calling](#-voip-calling) for the API entry point.
 - 📩 Expanded messages support for:
    - 🖼️ [Album Message](#%EF%B8%8F-album-image--video)
    - 👤 [Group Status Message](#%E2%80%8D%E2%80%8D-group-status)
@@ -1433,6 +1438,50 @@ sock.sendMessage(jid, {
    viewOnceV2Extension: true
 })
 ```
+
+### ☎️ VoIP Calling
+
+The package exports the integrated calling engine as `Voip`. It uses the existing Baileys socket and provides an API for listening to calls, placing calls, accepting or rejecting incoming calls, and managing active calls.
+
+```javascript
+import {
+   makeWASocket,
+   Voip,
+   useMultiFileAuthState
+} from '@flexisystems/baileys'
+
+const { state, saveCreds } = await useMultiFileAuthState('session')
+
+const sock = makeWASocket({ auth: state })
+sock.ev.on('creds.update', saveCreds)
+
+const voip = new Voip(sock, {
+   maxConcurrentCalls: 2,
+   voipLogLevel: 'warn'
+})
+
+await voip.listen()
+
+// Listen for incoming calls
+const stopListening = voip.onIncoming((call) => {
+   console.log('Incoming call:', call.id, call.from, call.isVideo)
+})
+
+// Place an outgoing call using a local audio file or supported media source
+const call = await voip.call('2348012345678', './audio.mp3')
+
+// End that managed call when finished
+await call.hangup()
+
+// Stop receiving the onIncoming callback when it is no longer needed
+stopListening()
+```
+
+**Notes**
+- The calling engine requires a compatible WhatsApp connection and the media/runtime dependencies required by the selected call workflow.
+- Configure `maxConcurrentCalls` to set the maximum number of calls managed by this instance.
+- `voip.listen()` must be called before subscribing to call events or using coordinator-backed call controls.
+- The presence of this API in the package does not guarantee that every device, account, network, or WhatsApp call type will work identically. Test in a controlled environment before production use.
 
 ### ♻️ Modify Messages
 
