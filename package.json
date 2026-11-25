@@ -1,6 +1,6 @@
 {
   "name": "@flexisystems/baileys",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "Flexi Systems' Baileys v7 fork with group status handling, Meta AI-style rich responses, and a vendored Hiroosy VoIP engine.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
