@@ -2,6 +2,11 @@ name: Publish to npm
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
 
 permissions:
   contents: read
