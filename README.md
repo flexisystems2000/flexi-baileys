@@ -1321,18 +1321,34 @@ sock.sendMessage(jid, {
 
 #### 🧑‍🧑‍🧒 Group Status
 
-> [!NOTE]
-> It only works in group chat (`@g.us`)
+Publish a status update directly inside a WhatsApp group. This is different from a personal status that mentions a group.
 
 ```javascript
-sock.sendMessage(jid, {
-   image: {
-      url: './path/to/image.jpg'
-   },
-   caption: '👥 Group Status!',
-   groupStatus: true
+// Text group status
+await sock.sendGroupStatus('120363000000000000@g.us', {
+   text: 'Hello from the group status!'
 })
+
+// Image group status
+await sock.sendGroupStatus('120363000000000000@g.us', {
+   image: { url: './path/to/image.jpg' },
+   caption: '👥 Group Status!'
+})
+
+// Video group status
+await sock.sendGroupStatus('120363000000000000@g.us', {
+   video: { url: './path/to/video.mp4' },
+   caption: 'A video for this group'
+})
+
+// Publish the same update to multiple groups, one group at a time
+await sock.sendGroupStatus(
+   ['120363000000000000@g.us', '120363000000000001@g.us'],
+   { text: 'Hello to both groups!' }
+)
 ```
+
+The helper validates group JIDs and returns the generated message result for each target. For lower-level control, `sock.sendMessage(jid, { ...content, groupStatus: true })` remains supported.
 
 #### 🐱 Lottie Sticker
 
