@@ -36,6 +36,10 @@ export function makeMessagesSocket(config: any): {
     updateMemberLabel: (jid: any, memberLabel: any) => Promise<any>;
     updateMediaMessage: (message: any) => Promise<any>;
     sendMessage: (jid: any, content: any, options?: {}) => Promise<proto.WebMessageInfo | undefined>;
+    sendRichMessage: (jid: any, submessages: any, options?: {}) => Promise<proto.WebMessageInfo | undefined>;
+    richResponse: (jid: any, submessages: any, options?: {}) => Promise<proto.WebMessageInfo | undefined>;
+    sendMarkdown: (jid: any, markdown: string, options?: {}) => Promise<proto.WebMessageInfo | undefined>;
+    sendUnifiedResponse: (jid: any, captured: any, options?: {}) => Promise<proto.WebMessageInfo | undefined>;
     executeWMexQuery: (variables: any, queryId: any, dataPath: any) => Promise<any>;
     newsletterCreate: (name: any, description: any) => Promise<{
         id: any;

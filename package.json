@@ -1,7 +1,7 @@
 {
-   "name": "@itsliaaa/baileys",
-   "version": "0.5.6",
-   "description": "A lightweight, dependency-minimal Baileys v7 fork with newsletter media upload fixes, interactive messages, albums, and extended message type support.",
+   "name": "@flexisystems/baileys",
+   "version": "0.5.7",
+   "description": "Flexi Systems' Baileys v7 fork with group status handling, Meta AI-style rich responses, and a vendored Hiroosy VoIP engine.",
    "main": "lib/index.js",
    "types": "lib/index.d.ts",
    "type": "module",
@@ -13,12 +13,14 @@
    },
    "repository": {
       "type": "git",
-      "url": "git+https://github.com/itsliaaa/baileys.git"
+      "url": "git+https://github.com/flexisystems2000/baileys.git"
    },
    "files": [
       "lib/**/*",
       "WAProto/**/*",
-      "engine-requirements.js"
+      "engine-requirements.js",
+      "NOTICE.md",
+      "CHANGELOG.md"
    ],
    "keywords": [
       "automation",
@@ -32,8 +34,8 @@
       "whatsapp-bot",
       "whatsapp-web"
    ],
-   "homepage": "https://github.com/itsliaaa/baileys#readme",
-   "author": "Lia Wynn",
+   "homepage": "https://github.com/flexisystems2000/baileys#readme",
+   "author": "Flexi Systems (fork maintainer)",
    "license": "MIT",
    "dependencies": {
       "@itsliaaa/starforge": "0.0.0-alpha.13",
@@ -96,5 +98,12 @@
       "underscore": "^1.13.8",
       "yaml@npm:^2.6.1": "^2.8.4"
    },
-   "packageManager": "yarn@4.9.2"
+   "packageManager": "yarn@4.9.2",
+   "bugs": {
+      "url": "https://github.com/flexisystems2000/baileys/issues"
+   },
+   "contributors": [
+      "Lia Wynn (upstream fork; see NOTICE.md)",
+      "Rajeh Taher / WhiskeySockets (original Baileys)"
+   ]
 }

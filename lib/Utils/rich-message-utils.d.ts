@@ -46,3 +46,13 @@ export function wrapToBotForwardedMessage(richResponseMessage: any): {
         };
     };
 };
+export function captureUnifiedResponse(message: any): {
+    unifiedResponse: { data: Uint8Array | Buffer };
+    submessages: any[];
+    contextInfo: any;
+} | null;
+export function generateUnifiedResponseContent(captured: {
+    unifiedResponse: { data: Uint8Array | Buffer };
+    submessages?: any[];
+    contextInfo?: any;
+}): any;
